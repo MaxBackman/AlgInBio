@@ -1,0 +1,140 @@
+2017-10-23
+
+Dinner on thursday at either Södermalm (husmanskost) or Hornstull (hipster food)
+
+Basic language of computer science:
+
+computer scientist:
+	problem: addition
+	input: two n-digit numbers a and b
+	output: the sum a+b
+
+	a lot of hidden assumptions based on the biological part of the problem
+	when writing down the problem statement one should be as thorough as possible
+
+Problem instances =
+	actual input data fulfilling given requirements
+
+	12+45 is an instance with n=2
+
+
+
+Problem: The distance-based phylogeny problem
+Input:  An alignment over a set of seqs A, |A|=n,...
+	A distance function f: a,b-> R, a,b in Sigma^m
+	where m is length and Sigma is an alphabet, Sigma={A,C,G,T}
+Output: A binary tree T (customary to use a binary tree), with weights on the edges,
+	w(e) for an edge e in the tree
+	minimalize all pairs Sigma_(a,b)|f(a,b)-Sigma_(e in T_(a,b))w(e)|
+	where T_(a,b) is a path from vertex a to b in T
+	with leaves labelled by eleents from A
+
+It is important to always specify the input and the output
+
+An algorithm is designed to solve a computational problem
+	Requirements:
+	* It returns a solution according
+	  to the given output requirements
+	* It is guaranteed to return (not always a given)
+	* Handles all valid input (could be argued to follow from the first point)
+
+	Example:
+	* Compute distances with Kimura's 2-parameter model
+	* Return a Neighbour Joining tree
+	No guarantee for optimal output
+
+Two interpretations of "algorithm"
+	* "Recipe", "step-by-step instruction", "heuristic"
+	* ..., with guarantee to return according to specification } in CS-books
+
+Next: algorithm properties
+	Predicting how much
+		time
+		space
+		or other resources like communication, comparisons, cache misses etc
+	the algorithm needs
+
+Scalability
+	Need time-complexity (space-complexity)
+	Ideally: can predict exactly the time needed as function of input-size
+	Convenient solution: count steps in simple model of a computer
+
+Computational models
+	* RAM - Random Access Machine
+		* Unbounded memory
+		* All basic operations take 1 unit of time
+		
+
+	* Turing machine
+		* Linear time memory access
+		* Universal Turing machine
+		* Tool for proving that are functions that cannot be computed
+
+	* Finite State Machines, automatons
+	* Logic circuit
+	* Counting comparisons, and other "features"
+	* Lambda calculus
+		*Formalize computation to be able to reason about it mathematically
+
+
+== Afternoon ==
+
+Algorithm analysis
+
+def search(x, data):
+	for elem in data:
+		if elem == x
+			return True
+		else
+			return False
+
+Intuitions of Ordo:
+	* O(f(x)) describes asymptotically (as in "when x grows") how f grows
+	* "A bag of functions growing as fast or slower, than f"
+	Mathematical definition: O(f(x) = {g(x):Ex_a,EC,Ax>x_a, |f(x)|=<C|g(x)|} where
+	E is "there exists" and A is "for all"
+
+	h(x) € O(x)
+
+	2n+17 is in O(n)? True
+	10n is in O(n^2)? True
+	n^2+log(n) is in O(n^2)? True
+	
+
+Input: a sorted list of numbers x, such that x€[0,2^31-1] and a query x
+Output: True if x is in the list, False otherwise
+
+
+def binsearch(x, data):
+	left = 0
+	right = len(data)-1
+
+Selection sort
+O(n^2)
+
+O(n^2) = growing slower than n^2 := "<="
+o(n^2) = growing stritly slower than n^2 := "<", with lower-case 'o'
+theta(f(n)) = growing exactly as fast as f(n) := "=="
+Upper-case omega(f(n)) = faster := ">="
+Lower-case omega(f(n)) = strictly faster := ">"
+
+The multiplication problem:
+naive solution: O(n^2)
+O(nlog(n)log(log(n))) <- about where mathematicians are at today with this problem
+
+Karatsubas algorithm for a*b, n-digit numbers
+a=a_1*10^(n/2)+a_0
+b=b_1*10^(n/2)+b_0
+
+a*b = (a_1*10^(n/2)+a_0)(b_1*10^(n/2)+b_0) = a_1*b_1*10+(a_1*b_0+a_0*b_1)*10^(n/2)+a_0*b_0
+=> 4 multiplications of n/2 digit numbers, is better it turns out
+=> apply Katsubas algorithm recursively
+T(n) = 4*T(n/2)+0
+=> Apply the "master theorem" => O(n^log_2(3)) = about O(n^1.58)
+
+a = 1234
+a_1 = 12
+a_0 = 34
+
+a_1*10^2+a_0=a
+

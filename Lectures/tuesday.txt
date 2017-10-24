@@ -1,0 +1,104 @@
+== Tuesday ==
+
+Multiple Testing Corrections
+
+Population alpha (my_alpha) -> Sample A \
+					Model (e.g. my_alpha - my_beta) _> Inference
+Population beta (my_beta) -> Sample B  /
+
+H_0: my_alpha-my_beta = 0
+H_1: my_alpha-my_beta != 0
+
+p-value: Pr(data|H_0)
+p-value: Pr(|delta my>=||my_alpha-my_beta|| |H_0)
+
+Randomized trial for a drug company: typical significance level = 0.05
+If you measure 20 variables you are expected to find at least one significant with the same level
+
+False discovery rate ("FDR")
+
+5% of the measurements at sig.lvl = 0.05 will actually be adherent to the H_0 by chance
+but we do not know which
+
+We control for false discovery rate
+
+P-values are uniformely distributed, p.val€R[0,1]
+
+Normal high-throughput experiment (mixture of H_0 and H-1)
+
+Numbers of findings below t: (total numbers of features considered significant)
+S(t) = |{p_i<=t}|
+Number of null p-values below t:
+F(t) = Pi_0*m*t
+
+where M=|{p_i}|  # the number of p-values
+
+FDR(t) = EV{F(t)/{S(t)} = Pi_0*M*t/(|{P_i<=t}|)
+
+q(P_i) = min_(t>=P_i)FDR(t)
+
+Pi_0(lamba) = |{p_i}>lambda}|/M(1-lambda)
+
+
+== Afternoon ==
+
+Complexity theory - complexity classes
+
+P: the problems for which E an algorithm with polynomial time complexity
+O(n), O(n^2), O(n^12)
+"Practical"
+"The class of problems that we can handle today"
+
+NP: the problems for which a solution can be verified in polynomial time
+	"Non-deterministic polynomial time"
+	Classic: satisfiability of Boolean formulas
+	=> O(2^n) best estimate
+	
+	P is a subset of NP
+
+	NP complete:= belongs to the set of the hardest problems in NP
+
+Graphs
+ * Hamiltonian path
+	Input: Graph G=(V,E)
+	Output: True iff exists a path visiting all vertices exactly once
+
+	A decision problem since the answere is either true or false
+
+	NP complete! Seems O(2^n)
+
+	You have DNA-reads, and their overlaps
+	Form a vertex for each read, and an edge (x,y) if significant overlap of reads x&y
+	Is there a way to merge these reads into a contig?
+	Ideally, involve every read exactly once
+
+	Improvement: weight edges with overlap
+
+	Travelling salesman
+
+*Euler path
+	Input: Graph G=(V,E)
+	Output: True iff exists a path path visiting each edge exactly once
+
+	Theorem: An Euler path exists iff all vertices except two have even-numbered degrees
+	
+	[(1,2), (2,3), (3,1] a triangle etc
+	O(|V|+|E|)
+
+*de Bruijn graph
+	For each read and its (k+1)-mers (substrins of length k+1), create (if needed)
+	two vertices, for the k-mer prefix and the k-mer suffix, and an
+	edge between them
+
+	k=4
+	ACGTAATC
+
+	ACGT -> CGTA -> 
+			GTAA 
+	AATC <- TAAT <-
+	
+	Possible to solve in linear time
+
+
+Problem: databases are biased
+Desire: train ML software to recognize structural features
