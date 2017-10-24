@@ -100,5 +100,16 @@ Graphs
 	Possible to solve in linear time
 
 
-Problem: databases are biased
+Problem: databases are biased, many similar species and data
 Desire: train ML software to recognize structural features
+
+Name: Max. independent set problem } NP complete
+Complement: Max clique problem
+
+Suggestion: weight input features by how well a group of species are represented
+
+Old solution: if two proteins are more than x% idential, we only want to keep one
+
+Proposition: create a vertex for each protein
+	     create an edge between vertices from highly similar proteins
+
