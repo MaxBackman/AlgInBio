@@ -1,0 +1,30 @@
+DOI (Design of Experiment)
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+-Replication - handle random noise
+-Randomization - reduce systematice errors
+-Blocking - remove influence of systematic errors, e.g. group patients by sex
+
+Linear Regression
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+f(x) = ax+b
+
+min_(a,b)Sigma(y_i-f(x_i))^2
+
+Regression with categorial variables
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+f(x)={y_healthy if x_i=H
+     {y_diseased if x_i=D
+
+min_(y_h,y_d)Sigma_i(y_i - f(x_i))^2
+
+Regression with Blocking
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+C() categorical variable
+
+"y~C(Disease)+C(Sex)"
+
+Both categorical variables and linear variables
+"Salary~Experience+C(Sex)"
+

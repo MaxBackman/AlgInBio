@@ -113,3 +113,58 @@ Old solution: if two proteins are more than x% idential, we only want to keep on
 Proposition: create a vertex for each protein
 	     create an edge between vertices from highly similar proteins
 
+
+Impleentation
+	*Edge list
+	*Adjacency list - Python dict over vertices,
+			  storing a list of adjacent verties
+	*Adjacency matrix - A_(v,w) = 1 iff (v,w)€E
+				      0 otherwise
+			    CAVE: Bad for large sparse graphs
+			    |E| = a(|V|^2) => "sparse graph"
+
+First: look at modules rather than implementing them yourself! "networkx" is a good
+already existing module
+
+Graph traversal
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+	A building block for many algorithms
+	*Good for iterating over vertices in "smart" order
+	*It helps you with questions like reachability
+	*Building blocks for other algorithms
+
+	DFS - depth first search: "Attack! Fast forward!"
+	BFS - breadth first search: "Careful! Look at neighbours first!"
+
+
+Spruce genome project
+	Large genome ~20Gbp
+
+Most DNA is repeats and duplicates	}
+~30,000 genes				} => hard assembly problem
+Diploid, highly heterozygous		}
+
+More data
+	version 1 had ~30x coverage (each gene had 30 reads)
+	some fosmid sequences (40knt sequence), pooled, 1000 fosmids/pool
+
+Average contig length ~= 1kbp
+Hoping for 1000 contigs of length 40k
+
+Reality: average contig length: ~10k, each fosmid broken up in 4 pieces
+
+Adding 2000 pools, ~3x coverage
+
+version 2 input:
+	5 WGS assemblies (contig ~1k on avg)
+	Long fosmid pool contigs (that are roughly ~10k long)
+
+No long-read assembler works on this data
+Have collaborators that have computed overlaps data for all contigs
+
+	Using connected components we get contigs
+	Avoided taking away high-degree-nodes but not venture out along their
+	edges
+
+================================
