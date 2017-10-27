@@ -28,3 +28,114 @@ C() categorical variable
 Both categorical variables and linear variables
 "Salary~Experience+C(Sex)"
 
+
+== Afternoon ==
+
+Compute the right thing
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+*Lazy - try to reuse tools we have/know on new problems
+	Example: people tried to do everything with Blast
+
+*Common to think operationally
+	"I have A, but want B"
+
+		 H------.
+		/        \
+	A - - - - - - - > B
+	 \    /
+	  C->F
+
+Clustering protein sequences
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+Fundamental dogma of bioinfo:
+	Sequence -> Structure -> Function
+
+Know function for some sequences
+Find those with same structure!
+=> Find seqs that should have same structure by having significantly similar seqs
+
+The basic means of clustering is similarity
+Therefore most software use Blast as a subroutine, or rather Blast output as input
+
+Common approach: similarity graph
+
+Suggestion: Find a clique
+		difficult and NP complete
+	    Extent - want alignment to cover at least x% of the seqs
+		what should x be? people usually just play around with the variable
+		usually cumbersome to work with
+	    Prop: require strongly connected components = at least 2 independent paths
+		  between every pair of vertices
+		no connection to biology, very mathematical approach
+
+Dannie Durand: Neighborhood correlation (NC)
+
+NC(x,y) = Corr(S_x, S_y)
+
+	Suggestion: look at score distributions, are they similar for two proteins?
+	=> consider a score(X,i), where i is a random protein
+		as a random variable S_x
+
+	How similar are S_A and S_C for example?
+	She suggested that we should look at correlations
+
+
+Fundamental problem: "multidomain problem"
+
+
+Filtering DNA reads
+Input: Large set of DNA reads Q,
+	and a reference set of sequences G
+Output: Q' subset of Q, not in G
+
+Purpose: *get rid of, or detect, contamination
+	 *separating known from unknown bacteria, viruses
+
+"Use Blast" but Blast is not designed for this problem, slow for this problem
+	-the wrong approach
+
+*Bowtie or BWA
+	Actually not computing/solving our problem
+	They are placing reads on a reference, one can avoid bothering looking at location altogether
+
+
+Data Structure: Bloom filter
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+	Probabilistic data structure: randomness, some answers will be wrong, but
+	we can control the probability p of something happening by chance.
+
+The Bloom filter is a bitvector of size m,
+	and k hash functions, defined on the domain of our input,
+	words of size c, over the alphabet {A,C,G,T},
+		h_i:{A,C,G,T}^c -> [0,m-1]
+
+hash function example: h_i(w) = (a_i(bitvector(w)+b_i) modulo prime_i) modolu (m-1) p>>m
+
+insert(w, B):
+	for i = 0 to k-1:
+		B[h_i(w)]:=1
+
+lookup(w, B):
+	for i= 0 to k-1:
+		if B[h_i(w)]==0:
+			return False
+	return True
+
+Always True for words that are in B.
+Sometimes True, for words no in B. Bad!
+Prob(FalsePositive)=1/(2^k)
+
+Stranneheim et al:
+	Look at short words/windows in reads/ref.-seqs.
+	If a read has "sufficiently" many hits to the filter,
+	label it as "known".
+
+Since then: Better implementation in C++ available in ABySS
+
+
+
+
+
+

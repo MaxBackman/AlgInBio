@@ -1,0 +1,20 @@
+Potential Improvements
+
+-Exercises at different levels
+-Even more optional preparatory programming courses
+-More hints in the exercises
+-Too basic tutorials compared to the exercises
+-More tutorials
+
+Project
+¨¨¨¨¨¨¨
+
+	Find a project related to your work (if you want) using
+	any of the following subjects taught in the course:
+
+	Differential expression
+	Dynamic programming
+	Graph theory
+
+Email Lukas Käll about what project we choose, send the report and repository when finished
+

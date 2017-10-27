@@ -1,0 +1,43 @@
+Dynamic Programming (optimization)
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+-One property that the problem has to have is enumerable sub-problems, so that you can
+enumerate all the problems
+-Problem is possible to break out as an entity of its own
+-Store the outcome of each sub-problem
+
+How do you calculate the mass of proteins?
+
+Calculate the number n_m of a.a. permutations having the
+same mass m
+
+Iterative problems
+
+Number of amino acids permutations having mass of m, n_m
+[n_(m-1), n_(m-2),...,n_0]
+n_0 = 1, n_j = 0, j=-1,...,-inf
+
+masses of the amino acid {a_i}, i=1,...,20
+
+n_m = Sigma_i(n_(m-a_i))
+
+Needleman-Wunsch algorithm for global alignments
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+
+Goal: Align sequences a_1...a_n and b1...b_m
+	score of match/missmatch between a, a. a,b and given by d(a,b)
+	score of in/del given as d(-,b)=d(a,-)=g
+
+NW: Score of an optimal alignment is given by the recursion
+
+S_ij = max { S_(i-1, j-1) + d(a_i, b_j)
+	     S_(i,j-1) + d(-,b_j) = S_(i,j-1)+g
+	     S_(
+
+Align GAC and ACG
+
+    A  C  G
+ 0  -1 -2 -3
+G-1 -1  
+A-2
+C-3
