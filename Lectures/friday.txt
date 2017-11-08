@@ -1,3 +1,11 @@
+
+Needleman-Wunsch:
+
+g(1) = 1*g+a # penalty for more than one gap
+
+
+Course evaluation
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 Potential Improvements
 
 -Exercises at different levels
@@ -17,4 +25,6 @@ Project
 	Graph theory
 
 Email Lukas Käll about what project we choose, send the report and repository when finished
+
+Deadline: before the next course
 
